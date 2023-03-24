@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <h1>Morpion</h1>
+    <div id="game">
+        <div id="tab">
+            <div class="col">
+                <div class="case borderR borderB" onclick="play(this)" ></div>
+                <div class="case borderR borderB" onclick="play(this)"></div>
+                <div class="case borderR" onclick="play(this)"></div>
+            </div>
+            <div class="col">
+                <div class="case borderR borderB" onclick="play(this)"></div>
+                <div class="case borderR borderB" onclick="play(this)"></div>
+                <div class="case borderR " onclick="play(this)"></div>
+            </div>
+            <div class="col">
+                <div class="case borderB" onclick="play(this)"></div>
+                <div class="case borderB" onclick="play(this)"></div>
+                <div class="case" onclick="play(this)"></div> 
+            </div>     
+        </div>
+        <div id="log">
+            <div>
+                <h2>Combien de Joueurs ?</h2>
+                <div class="info">
+                    <button onclick="howMuch(this)">1 Joueur</button>
+                    <button onclick="howMuch(this)">2 Joueurs</button>
+                </div> 
+            </div>
+            <div>
+                <h2>Score :</h2>
+                <div class="info">
+                    <div>
+                        <h3 id="gamerOne">Joueur 1</h3>
+                        <div id="scoreOne"></div>
+                    </div>
+                    <div>
+                        <h3 id="gamerTwo">Joueur 2</h3>
+                        <div id="scoreTwo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <button onclick="replay()">Rejouer</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2 id="result"></h2>
+    </div>    
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
