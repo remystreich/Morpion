@@ -52,7 +52,7 @@ function play(elem) {
         if (activePlayer == 1){                       //2 joueurs 
             elem.innerHTML = "X";
             arrayPush()
-        }else{
+        }else if(activePlayer == 2 && nmbrPlayer == "2 Joueurs"){
             elem.innerHTML = "O"                     //2 joueurs définition du signe qui sera posé, puis appel de la fonctoin arrayPush pour convertir en tableau
             arrayPush()                              // ensuite on alterne de joueur et vérification des conditions de victoire
         }
