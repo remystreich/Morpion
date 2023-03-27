@@ -2,6 +2,9 @@ let activePlayer = 1;
 let tab = [
     [],
     [],
+    [],
+    [],
+    [],
     []
 ];
 let gameOver = false;
@@ -36,7 +39,8 @@ function replay() {
     activePlayer = random(1,2); 
     altern(); //souligner le joueur actif
     document.querySelectorAll(".case").forEach(element => { //vider les cases
-        element.innerHTML = ""
+    element.innerHTML = ""
+    element.style.backgroundColor = "gray";
        });
     if (nmbrPlayer == "1 Joueur" && activePlayer == 2 ){ //si le cpu commence 
         gameOver = true; //empecher de jouer
@@ -51,8 +55,10 @@ function play(elem) {
     if (elem.innerHTML == "" && gameOver == false) {  //si case vide on peut jouer dessus
         if (activePlayer == 1){                       //2 joueurs 
             elem.innerHTML = "X";
+            elem.style.backgroundColor = "red";
             arrayPush()
         }else if(activePlayer == 2 && nmbrPlayer == "2 Joueurs"){
+            elem.style.backgroundColor = "yellow";
             elem.innerHTML = "O"                     //2 joueurs définition du signe qui sera posé, puis appel de la fonctoin arrayPush pour convertir en tableau
             arrayPush()                              // ensuite on alterne de joueur et vérification des conditions de victoire
         }
@@ -66,12 +72,13 @@ function play(elem) {
 ///////////fonction remplissage tableau
 function arrayPush(){
     let index = 0
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            tab[j][i] = document.querySelectorAll(".case")[index].innerHTML; //parcourir les 2 niveaux de tableaux et les case .case pour récupérer leurs valeurs et les stocker dedans dans l'ordre
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 7; j++) {
+            tab[i][j] = document.querySelectorAll(".case")[index].innerHTML; //parcourir les 2 niveaux de tableaux et les case .case pour récupérer leurs valeurs et les stocker dedans dans l'ordre
             index++;  
         }
     }
+    console.log(tab);
     turn++;  //plus un tour pour la condition d'égalité
 }
 /////////////////////////alternance joueurs
@@ -91,24 +98,27 @@ function checkWin(morpion) {
     let result ="";  //stocke la valeur du signe gagnant
     let scoreOne= 0;  // stocke les score à afficher
     let scoreTwo = 0;
-    for (let i = 0; i < morpion.length; i++) {
-        if (morpion[i][0] == morpion[i][1]  && (morpion[i][1] == morpion[i][2]) && morpion[i][0] != "") {
-            result = morpion[i][0];
-            gameOver = true;
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 7; j++) {
+            if (morpion[i][j] == morpion[i][j+1]  && (morpion[i][j+1] == morpion[i][j+2]) && morpion[i][j+2] == morpion[i][j+3]  && morpion[i][j] != "") {
+                result = morpion[i][j];
+                gameOver = true;
+            }
+            if (i<=2 && morpion[i][j] == morpion[i+1][j]  && (morpion[i+1][j] == morpion[i+2][j]) && morpion[i+2][j] == morpion[i+3][j] && morpion[i][j] != "") {
+                result = morpion[i][j];
+                gameOver = true;
+            }
+            if (i<=2 && morpion[i][j] == morpion[i+1][j+1] && morpion[i+1][j+1] == morpion[i+2][j+2] && morpion[i+2][j+2] == morpion[i+3][j+3] && morpion[i][j] !=""){
+                result = morpion[i][j];
+                gameOver = true;
+             }
+             if (i<=2 && morpion[i][j] == morpion[i+1][j-1] && morpion[i+1][j-1] == morpion[i+2][j-2] && morpion[i+2][j-2] == morpion[i+3][j-3] && morpion[i][j] !=""){
+                result = morpion[i][j];
+                gameOver = true;
+             } 
+             
         }
-         if (morpion[0][i] == morpion[1][i]  && (morpion[1][i] == morpion[2][i]) && morpion[0][i] !=""){
-            result = morpion[0][i];
-            gameOver = true;
-         }
-         if (morpion[0][0] == morpion[1][1] && morpion[1][1] == morpion[2][2] && morpion[0][0] !=""){
-            result = morpion[0][0];
-            gameOver = true;
-         }
-         if (morpion[0][2] == morpion[1][1] && morpion[1][1] == morpion[2][0] && morpion[0][2] != ""){
-            result = morpion[0][2];
-            gameOver = true;
-         }
-         if (turn == 9){
+        if (turn == 42){
             document.querySelector("#result").innerHTML = "Egalité";
             gameOver = true
          }
@@ -126,14 +136,15 @@ function checkWin(morpion) {
 }
 ////////////////////// fonction pour jouer à un joueur
 function againstCpu() {
-    let indexCpu = random(0,8); //sert à parcourir les 9 cases
+    let indexCpu = random(0,41); //sert à parcourir les 9 cases
     gameOver = true; //empeche le joueur de jouer en meme temps
     let tabhtlm = document.querySelectorAll('.case'); //définir la classe que l'on va parcourir
     while (tabhtlm[indexCpu].innerHTML != "" ){ //tant que la case parcourue n'est pas vide tire une autre case aléatoire
-        indexCpu =random(0,8);
+        indexCpu =random(0,41);
     }
     setTimeout(()=>{                       //délai d'action du cpu
-        tabhtlm[indexCpu].innerHTML = "O"; 
+        tabhtlm[indexCpu].innerHTML = "O";
+        tabhtlm[indexCpu].style.backgroundColor = "yellow"; 
         arrayPush();
         gameOver =false;    //redonne la main au joueur
         checkWin(tab);
