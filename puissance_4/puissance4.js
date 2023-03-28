@@ -48,7 +48,6 @@ function replay() {
     } else {
         gameOver = false;
     }
-
 }
 ///////////////fonction jouer sur case
 function play(elem) {
@@ -126,7 +125,6 @@ function checkWin(morpion) {
                 result = morpion[i][j];
                 gameOver = true;
             }
-
         }
         if (turn == document.querySelectorAll(".case").length-1) {
             document.querySelector("#result").innerHTML = "Egalité";
