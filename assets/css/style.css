@@ -6,6 +6,7 @@ html body{
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
     background-color: rgba(99, 97, 97, 0.598);
+    max-width: 100vw;
 }
 #tab{
     height: 500px;

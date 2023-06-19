@@ -1,0 +1,25 @@
+@media screen and (max-width: 768px) {
+    #game{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #tab{
+        height: 90vw;
+        width: 90vw;
+        display: flex;
+        margin-left: 0px;
+    }
+    #log{
+        display: flex;
+        width: 95vw;
+        border: ridge 1px gray;
+        border-radius: 10px;
+        background-color: rgba(128, 128, 128, 0.575);
+        margin: auto;
+    }
+    #gameContainer{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

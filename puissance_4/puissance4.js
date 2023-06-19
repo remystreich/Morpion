@@ -53,7 +53,6 @@ function replay() {
 function play(elem) {
     let col = elem.querySelectorAll('*');
     index = 5;
-    console.log(col);
     if (col[0].innerHTML == "" && gameOver == false) {
         if (activePlayer == 1) {
             while (index > 0 && col[index].innerHTML != "") {
@@ -71,7 +70,6 @@ function play(elem) {
         arrayPush()
         altern();
         checkWin(tab)
-        console.log(tab);
         if (nmbrPlayer == "1 Joueur" && activePlayer == 2 && !gameOver) {  //1joueur
             againstCpu()
         }
